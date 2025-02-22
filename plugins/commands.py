@@ -65,9 +65,7 @@ def formate_file_name(file_name):
 
 
 @Client.on_message(filters.command("start") & filters.incoming)
-async def start(bot, update):
-    client = bot
-    message = update
+async def start(client, message):
     if AUTH_CHANNEL:
         try:
             btn = await is_subscribed(client, message, AUTH_CHANNEL)
