@@ -64,10 +64,8 @@ def formate_file_name(file_name):
 # Ask Doubt on telegram @KingVJ0
 
 
-@Client.on_message(filters.command("start") & filters.incoming)
+@client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
-    client = client
-    message = message
     if AUTH_CHANNEL:
         try:
             btn = await is_subscribed(client, message, AUTH_CHANNEL)
