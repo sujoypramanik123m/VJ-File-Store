@@ -45,7 +45,7 @@ AUTO_DELETE_MODE = bool(environ.get('AUTO_DELETE_MODE', True)) # Set True or Fal
 AUTO_DELETE = int(environ.get("AUTO_DELETE", "30")) # Time in Minutes
 AUTO_DELETE_TIME = int(environ.get("AUTO_DELETE_TIME", "1800")) # Time in Seconds
 
-PROTECT_CONTENT = True
+(PROTECT_CONTENT = True)
 
 # Channel Information
 LOG_CHANNEL = int(environ.get("LOG_CHANNEL", "-1002440042338"))
