@@ -24,7 +24,7 @@ API_HASH = environ.get("API_HASH", "094c70fee92b47679abeeb0922e12440")
 BOT_TOKEN = environ.get("BOT_TOKEN", "")
 
 PICS = (environ.get('PICS', 'https://ibb.co/5X5VxXM9')).split() # Bot Start Picture
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '8181241262').split()]
 BOT_USERNAME = environ.get("BOT_USERNAME", "ToppersFilesStore_Bot") # without @
 PORT = environ.get("PORT", "8080")
 
