@@ -68,7 +68,12 @@ async def start(client, message):
                 await message.reply_text(text=f"<b>👋 Hello {message.from_user.mention},\n\nPlease join the channel then click on try again button. 😇</b>", reply_markup=InlineKeyboardMarkup(btn))
                 return
             print(e)
+    try:
     if not await db.is_user_exist(message.from_user.id):
+        # Code that should run if the user does not exist
+except Exception as e:
+    # Handle the exception
+    print(f"An error occurred: {e}")
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
