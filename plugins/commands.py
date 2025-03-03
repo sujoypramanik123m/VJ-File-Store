@@ -11,7 +11,7 @@ from Script import script
 from plugins.dbusers import db
 from pyrogram import Client, filters, enums
 from plugins.users_api import get_user, update_user_info
-from pyrogram.errors import *
+from pyrogram.errors import FloodWait
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from utils import verify_user, check_token, check_verification, get_token
 from config import AUTH_CHANNEL
@@ -35,6 +35,15 @@ async def is_subscribed(bot, query, channel):
         except Exception as e:
             pass
     return btn
+
+async def start_bot():
+    while True:
+        try:
+            await StreamBot.start()
+            break  # Exit the loop if start is successful
+        except FloodWait as e:
+            print(f"Flood wait: sleeping for {e.x} seconds")
+            await asyncio.sleep(e.x)  # Wait for the required time
 
 def get_size(size):
     """Get size in readable format"""
@@ -70,9 +79,6 @@ async def start(client, message):
             print(e)
     try:
     if not await db.is_user_exist(message.from_user.id):
-        # Code that should run if the user does not exist
-except Exception as e:
-    # Handle the exception
     print(f"An error occurred: {e}")
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT.format(message.from_user.id, message.from_user.mention))
